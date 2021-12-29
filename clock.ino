@@ -3,6 +3,8 @@ int  hours = 00;
 int  minutes = 00;
 uint8_t  seconds = 00;
 
+//////////////////////////////////////////////////////////////
+
 void PrintSeconds()
 {
   if(!setMode){
@@ -20,6 +22,8 @@ void PrintSeconds()
   }
 }
 
+//////////////////////////////////////////////////////////////
+
 void PrintMinutes()
 {
     char minutesStr[3] = "00";
@@ -28,6 +32,8 @@ void PrintMinutes()
     display.printFixedN (78,  0, minutesStr, STYLE_NORMAL, FONT_SIZE_4X);
 }
 
+//////////////////////////////////////////////////////////////
+
 void PrintHours()
 {
     char hoursStr[3] = "00";
@@ -35,6 +41,8 @@ void PrintHours()
     hoursStr[1] = '0' + hours % 10;
     display.printFixedN (20,  0, hoursStr, STYLE_NORMAL, FONT_SIZE_4X);
 }
+
+//////////////////////////////////////////////////////////////
 
 void ClockSetup()
 {
@@ -45,6 +53,8 @@ void ClockSetup()
     PrintHours();
     PrintMinutes();
 }
+
+//////////////////////////////////////////////////////////////
 
 void CLOCK_SET_TIME(DIRECTION direction) {
   switch(direction){
@@ -73,6 +83,8 @@ void CLOCK_SET_TIME(DIRECTION direction) {
   }
 }
 
+//////////////////////////////////////////////////////////////
+
 void ClockLoop()
 {
     if ((uint32_t)(lcd_millis() - lastMillis) >= 1000)
@@ -95,3 +107,5 @@ void ClockLoop()
         PrintSeconds();
     }
 }
+
+//////////////////////////////////////////////////////////////

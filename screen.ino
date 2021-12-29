@@ -1,8 +1,12 @@
 SCREENS lastscreen = SCREENS::CLOCK;
 
+//////////////////////////////////////////////////////////////
+
 void SetupOLED() {
   ClockSetup();
 }
+
+//////////////////////////////////////////////////////////////
 
 void ScreenUp() {
   screen = static_cast<SCREENS>(static_cast<int>(screen) + 1); //How to move through an enum
@@ -12,6 +16,8 @@ void ScreenUp() {
   }
 }
 
+//////////////////////////////////////////////////////////////
+
 void ScreenDown() {
   screen = static_cast<SCREENS>(static_cast<int>(screen) - 1);
   if (screen == SCREENS::BEGIN) {
@@ -19,6 +25,8 @@ void ScreenDown() {
     screen = static_cast<SCREENS>(static_cast<int>(screen) - 1);
   }
 }
+
+//////////////////////////////////////////////////////////////
 
 void UpdateOLED() {
     switch(screen){
@@ -65,6 +73,7 @@ void UpdateOLED() {
   }
 }
 
+//////////////////////////////////////////////////////////////
 
 void CLOCKScreen(){
   PrintHours();
@@ -72,12 +81,18 @@ void CLOCKScreen(){
   PrintSeconds();
   ClockLoop();
 }
+
+//////////////////////////////////////////////////////////////
+
 void RPMScreen(){
   char displaystr[4];
   sprintf(displaystr, "%4d", ecm.RPM());    
   display.printFixedN (10,  0, displaystr, STYLE_NORMAL, FONT_SIZE_4X);
   display.printFixed (110,  20, "rpm", STYLE_NORMAL);
 }
+
+//////////////////////////////////////////////////////////////
+
 void MAPScreen(){
   if (!setMode){
     char displaystr[4];
@@ -91,36 +106,54 @@ void MAPScreen(){
     display.printFixed (110,  20, "  %", STYLE_NORMAL);
   }
 }
+
+//////////////////////////////////////////////////////////////
+
 void BAROScreen(){
   char displaystr[4];
   sprintf(displaystr, "%4d", (short)ecm.BARO());
   display.printFixedN (10,  0, displaystr, STYLE_NORMAL, FONT_SIZE_4X);
   display.printFixed (110,  20, "kpa", STYLE_NORMAL);
 }
+
+//////////////////////////////////////////////////////////////
+
 void CLTScreen(){
   char displaystr[4];
   sprintf(displaystr, "%4d", (short)ecm.CLT());
   display.printFixedN (10,  0, displaystr, STYLE_NORMAL, FONT_SIZE_4X);
   display.printFixed (110,  20, "oC", STYLE_NORMAL);
 }
+
+//////////////////////////////////////////////////////////////
+
 void AITScreen(){
   char displaystr[4];
   sprintf(displaystr, "%4d", (short)ecm.AIT());
   display.printFixedN (10,  0, displaystr, STYLE_NORMAL, FONT_SIZE_4X);
   display.printFixed (110,  20, "oC", STYLE_NORMAL);
 }
+
+//////////////////////////////////////////////////////////////
+
 void OILPScreen(){
   char displaystr[4];
   sprintf(displaystr, "%4d", (short)ecm.OIL_PRESSURE());
   display.printFixedN (10,  0, displaystr, STYLE_NORMAL, FONT_SIZE_4X);
   display.printFixed (110,  20, "psi", STYLE_NORMAL);
 }
+
+//////////////////////////////////////////////////////////////
+
 void AFRScreen(){
   char displaystr[4];
   dtostrf(ecm.AFR(), 4, 1, displaystr);
   display.printFixedN (10,  0, displaystr, STYLE_NORMAL, FONT_SIZE_4X);
   display.printFixed (110,  20, "afr", STYLE_NORMAL);
 }
+
+//////////////////////////////////////////////////////////////
+
 void FUELTYPEScreen(){  
   if (!setMode){
     if (ecm.SPARK_MAP()){
@@ -140,9 +173,14 @@ void FUELTYPEScreen(){
   }
   display.printFixed (110,  20, "oct", STYLE_NORMAL);
 }
+
+//////////////////////////////////////////////////////////////
+
 void SPEEDScreen(){
   char displaystr[4];
     sprintf(displaystr, "%4d", (short)ecm.SPEED());
   display.printFixedN (10,  0, displaystr, STYLE_NORMAL, FONT_SIZE_4X);
   display.printFixed (110,  20, "mph", STYLE_NORMAL);
 }
+
+//////////////////////////////////////////////////////////////

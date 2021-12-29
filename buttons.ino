@@ -5,10 +5,15 @@
 byte DEBOUNCE_TIME = 250;
 #define SET_TIMEOUT 10000
 
+//////////////////////////////////////////////////////////////
+
 int set_button_state = HIGH;
 unsigned long time_set_button_SETd;
 bool setMode = false;
 unsigned long setModeEntered = 0;
+double lastpressed = 0;
+
+//////////////////////////////////////////////////////////////
 
 void SetupButtons() {
   time_set_button_SETd = millis();
@@ -16,6 +21,8 @@ void SetupButtons() {
   pinMode(DOWN_BUTTON, INPUT_PULLUP);
   pinMode(SET_BUTTON, INPUT_PULLUP);
 }
+
+//////////////////////////////////////////////////////////////
 
 void CheckButtonPressed() {
   //Check up
@@ -51,6 +58,8 @@ void CheckButtonPressed() {
   }
 }
 
+//////////////////////////////////////////////////////////////
+
 /*Button pressed methods*/
 void Set() {
 if (set_button_state != LOW) {
@@ -61,6 +70,8 @@ if (set_button_state != LOW) {
   }
 }
 
+//////////////////////////////////////////////////////////////
+
 void ActivateSetMode(){
     DEBOUNCE_TIME = 80;
     display.clear();
@@ -68,6 +79,8 @@ void ActivateSetMode(){
     setMode = true;
     ecm.LOCK();
 }
+
+//////////////////////////////////////////////////////////////
 
 void DeactivateSetMode(){
     DEBOUNCE_TIME = 200;
@@ -77,13 +90,15 @@ void DeactivateSetMode(){
     time_set_button_SETd = millis();
 }
 
+//////////////////////////////////////////////////////////////
+
 void CheckSetTimeout() {
   if (millis() - setModeEntered > SET_TIMEOUT && setMode) {
     DeactivateSetMode();
   }
 }
 
-double lastpressed = 0;
+//////////////////////////////////////////////////////////////
 
 void Up() {
   if (millis() - lastpressed > DEBOUNCE_TIME) {
@@ -112,6 +127,8 @@ void Up() {
   }
 }
 
+//////////////////////////////////////////////////////////////
+
 void Down() {
   if (millis() - lastpressed > DEBOUNCE_TIME) {
     display.clear();
@@ -138,3 +155,5 @@ void Down() {
     lastpressed = millis();
   }
 }
+
+//////////////////////////////////////////////////////////////
