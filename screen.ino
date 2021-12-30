@@ -3,7 +3,9 @@ SCREENS lastscreen = SCREENS::CLOCK;
 //////////////////////////////////////////////////////////////
 
 void SetupOLED() {
-  ClockSetup();
+  display.begin();
+  display.clear();
+  display.setFixedFont(ssd1306xled_font6x8);
 }
 
 //////////////////////////////////////////////////////////////
@@ -181,6 +183,12 @@ void SPEEDScreen(){
     sprintf(displaystr, "%4d", (short)ecm.SPEED());
   display.printFixedN (10,  0, displaystr, STYLE_NORMAL, FONT_SIZE_4X);
   display.printFixed (110,  20, "mph", STYLE_NORMAL);
+}
+
+//////////////////////////////////////////////////////////////
+
+void OLED_OFF(){
+  display.fill(0x00);
 }
 
 //////////////////////////////////////////////////////////////

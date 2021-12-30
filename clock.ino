@@ -46,9 +46,6 @@ void PrintHours()
 
 void ClockSetup()
 {
-    display.begin();
-    display.clear();
-    display.setFixedFont(ssd1306xled_font6x8);
     lastMillis = lcd_millis();
     PrintHours();
     PrintMinutes();

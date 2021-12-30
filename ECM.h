@@ -1,4 +1,6 @@
-#pragma once
+#ifndef ECM_h
+#define ECM_h
+
 #include <arduino.h>
 #include "enums.h"
 
@@ -56,3 +58,5 @@ public:
     void LAMBDA(byte);
     void SPEED(byte, byte);
 };
+
+#endif
