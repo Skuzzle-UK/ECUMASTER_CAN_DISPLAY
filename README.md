@@ -43,7 +43,7 @@ Long press (2000 millis) of set button allows for values to be set on the pages 
 
 Once in the set mode the up and down buttons function to change the values up and down. Timeout of 10000 millis if no button is pressed.
 
-## CAN-BUS
+## CAN-BUS Programming
 ### 0x400
 | Output | Byte pos | Type | Function |
 |--------|----------|------|----------|
