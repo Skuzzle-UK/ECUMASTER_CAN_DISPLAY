@@ -26,13 +26,17 @@ CAN-BUS function is untested as of writing.
 | CAN Analog # 2 | 1 | unsigned 8 bit | Boost pressure output 0-255 |
 
 ### 0x500
-- RPM - 0 - unsigned 16 bit little endian
-- AIT - 2 - signed 8 bit
-- MAP - 3 - unsigned 8 bit
-- SPEED - 4 - unsigned 16 bit little endian
-- BARO - 6 - unsigned 8 bit
-- OIL PRESSURE - 7 - unsigned 8 bit - 21
+| Data | Byte pos | Type | Multiplier |
+|--------|----------|------|----------|
+| RPM | 0 | unsigned 16 bit little endian | 1 |
+| AIT | 2 | signed 8 bit | 1 |
+| MAP | 3 | unsigned 8 bit | 1 |
+| SPEED | 4 | unsigned 16 bit little endian | 1 |
+| BARO | 6 | unsigned 8 bit | 1 |
+| OIL PRESSURE | 7 | unsigned 8 bit | 21 |
 
 ### 0x501
-- CLT - 0 - signed 8 bit
-- LAMBDA - 1 - unsigned 8 bit - 128
+| Data | Byte pos | Type | Multiplier |
+|--------|----------|------|----------|
+| CLT | 0 | signed 8 bit | 1 |
+| LAMBDA | 1 | unsigned 8 bit | 128 |
