@@ -12,11 +12,36 @@ Ignition map can be swithed from the fuel type screen.
 
 CAN-BUS function is untested as of writing.
 
-## Project hardware:
+## Project hardware
 - Arduino nano
 - MCP2515 CAN-BUS SPI module.
 - 128x32 OLED display
 - 3 x buttons / switches
+
+## Function
+Buttons assigned:
+- D5 : UP
+- D3 : DOWN
+- D4 : SET
+  
+Pressing up or down cycles through display pages as shown:
+1. CLOCK
+2. RPM
+3. MAP
+4. BARO
+5. CLT
+6. AIT
+7. OILP
+8. AFR
+9. FUELTYPE
+10. SPEED
+
+Long press (2000 millis) of set button allows for values to be set on the pages shown:
+1. CLOCK (set time)
+3. MAP (set boost pressure)
+9. FUELTYPE (swap ignition table between 95 and 99 octane)
+
+Once in the set mode the up and down buttons function to change the values up and down. Timeout of 10000 millis if no button is pressed.
 
 ## CAN-BUS
 ### 0x400
