@@ -1,28 +1,19 @@
-#include <Vector.h>
-
-//////////////////////////////////////////////////////////////
-
-#define CAN_ANALOG_INPUTS 0x400
 #define CAN_PAGE_1 0X500
 #define CAN_PAGE_2 0X501
-
-//////////////////////////////////////////////////////////////
-
-Vector<int> canSendQueue;
+#define CAN_ANALOG_INPUTS 0x502
 
 //////////////////////////////////////////////////////////////
 
 void SetupCANBUS(){
   SPI.begin();
   mcp2515.reset();
-  mcp2515.setBitrate(CAN_500KBPS, MCP_8MHZ);
+  mcp2515.setBitrate(CAN_1000KBPS, MCP_8MHZ);
   mcp2515.setNormalMode();
 }
 
 //////////////////////////////////////////////////////////////
 
 void ReadCANBUS() {
-  if (!ecm.LOCKED()){
     struct can_frame readMsg;
     if (mcp2515.readMessage(&readMsg) == MCP2515::ERROR_OK){
       switch (readMsg.can_id){
@@ -42,14 +33,11 @@ void ReadCANBUS() {
         }
       }
     }
-  }
 }
 
 //////////////////////////////////////////////////////////////
 
 void WriteCANBUS() {
-  if (!ecm.LOCKED()){
-    if (canSendQueue.size() > 0){
       struct can_frame sendMsg;
       sendMsg.can_id = CAN_ANALOG_INPUTS;
       sendMsg.can_dlc = 8;
@@ -62,8 +50,6 @@ void WriteCANBUS() {
       sendMsg.data[6] = 0x00;
       sendMsg.data[7] = 0x00;
       mcp2515.sendMessage(&sendMsg);
-    }
-  }
 }
 
 //////////////////////////////////////////////////////////////

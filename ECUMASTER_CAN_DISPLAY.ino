@@ -6,10 +6,12 @@
 
 //////////////////////////////////////////////////////////////
 
-#define SLEEP_PIN 6 //Allows for the screen to turn off if pin is not grounded
+#define SLEEP_PIN A1 //Allows for the screen to turn off if pin does not recieve value
+#define SLEEP_PIN_MIN_VAL 511 //Should be somewhere around 2.5v
 
 //////////////////////////////////////////////////////////////
 
+//Instantiates required objects
 MCP2515 mcp2515(10);
 DisplaySSD1306_128x32_I2C display(-1);
 SCREENS screen = SCREENS::CLOCK;
@@ -18,8 +20,6 @@ ECM ecm = ECM();
 //////////////////////////////////////////////////////////////
 
 void setup() {
-  Serial.begin(9600); // Used for debugging only
-  pinMode(SLEEP_PIN, INPUT_PULLUP);
   SetupCANBUS();
   SetupButtons();
   SetupOLED();
@@ -29,7 +29,7 @@ void setup() {
 //////////////////////////////////////////////////////////////
 
 void loop() {
-if(digitalRead(SLEEP_PIN) == LOW){
+if(analogRead(SLEEP_PIN) > SLEEP_PIN_MIN_VAL){
   CheckButtonPressed();
   CheckSetTimeout();
   ReadCANBUS();

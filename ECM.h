@@ -3,10 +3,16 @@
 
 #include <arduino.h>
 #include "enums.h"
+#include <EEPROM.h>
+
+#define MEM_LOCATION_CHECKBYTE 0
+#define MEM_LOCATION_BOOST 1
+#define MEM_LOCATION_SPARK_MAP 2
 
 class ECM
 {
 private:
+    byte checkbyte = 0x03; //Increment this to rewrite new EEPROM values from code
     int32_t _rpm = 0;
     byte _map = 100;
     byte _baro = 100;
@@ -15,7 +21,7 @@ private:
     byte _oilp = 0;
     float _afr = 22.0f;
     float _lambda = 1.0f;
-    byte _boostpercent = 100;
+    byte _boostpercent = 0;
     bool _sparkmap = false;
     float _fuelusage = 0; //@@TODO make screen for this and implement mpg etc
     int32_t _speed = 0;
@@ -46,6 +52,7 @@ public:
     void SET_BOOST_PERCENTAGE(byte);
     void SET_BOOST_PRESSURE(DIRECTION);
     void SET_SPARK_MAP();
+    void LOAD_SPARK_MAP(bool);
     void LOCK();
     void UNLOCK();
     void RPM(byte, byte);
@@ -57,6 +64,9 @@ public:
     void AFR(byte);
     void LAMBDA(byte);
     void SPEED(byte, byte);
+    void SetupEEPROM();
+    void ReadEEPROM();
+    void WriteEEPROM();
 };
 
 #endif

@@ -2,7 +2,10 @@
 
 //////////////////////////////////////////////////////////////
 
-    ECM::ECM() {}
+    ECM::ECM() {
+      ECM::SetupEEPROM();
+      ECM::ReadEEPROM();
+    }
 
 //////////////////////////////////////////////////////////////
 
@@ -31,9 +34,10 @@
 //////////////////////////////////////////////////////////////
 
     byte ECM::BOOST_PRESSURE_CAN_OUT(){
-      byte inc = 255 / 100;
-      byte val = _boostpercent * inc;
-      return val;
+      float inc = 255.0f / 100.0f;
+      float val = (float)_boostpercent * inc;
+      val = 255 - val;
+      return (byte)val;
     }
 
 //////////////////////////////////////////////////////////////
@@ -49,10 +53,10 @@
 //////////////////////////////////////////////////////////////
 
     void ECM::SET_BOOST_PERCENTAGE(byte val) {
-        if (val < 0) {
-            val = 0;
+        if (val <= 1) {
+            val = 1;
         }
-        if (val > 100) {
+        if (val >= 100) {
             val = 100;
         }
         _boostpercent = val;
@@ -76,8 +80,12 @@
 //////////////////////////////////////////////////////////////
 
     void ECM::SET_SPARK_MAP() {_sparkmap = !_sparkmap;}
+    void ECM::LOAD_SPARK_MAP(bool val){ _sparkmap = val; }
     void ECM::LOCK() { _mutex = true; }
-    void ECM::UNLOCK() { _mutex = false; }
+    void ECM::UNLOCK() {
+      _mutex = false;
+      ECM::WriteEEPROM();
+    }
 
 //////////////////////////////////////////////////////////////
     
@@ -109,5 +117,31 @@
       int32_t val = (int32_t)firstbyte | ((int32_t)secondbyte << 8);
       _speed = val;
     }
+
+//////////////////////////////////////////////////////////////
+
+void ECM::SetupEEPROM(){
+  byte savedcheckbyte;
+  EEPROM.get(MEM_LOCATION_CHECKBYTE, savedcheckbyte);
+  if (savedcheckbyte != checkbyte){
+    EEPROM.put(MEM_LOCATION_CHECKBYTE, checkbyte);
+    EEPROM.put(MEM_LOCATION_BOOST, 0x01);
+    EEPROM.put(MEM_LOCATION_SPARK_MAP, false);
+  }
+}
+
+//////////////////////////////////////////////////////////////
+
+void ECM::ReadEEPROM(){
+  EEPROM.get(MEM_LOCATION_BOOST, _boostpercent);
+  EEPROM.get(MEM_LOCATION_SPARK_MAP, _sparkmap);
+}
+
+//////////////////////////////////////////////////////////////
+
+void ECM::WriteEEPROM(){
+    EEPROM.put(MEM_LOCATION_BOOST, _boostpercent);
+    EEPROM.put(MEM_LOCATION_SPARK_MAP, _sparkmap);
+}
 
 //////////////////////////////////////////////////////////////

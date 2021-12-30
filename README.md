@@ -10,8 +10,6 @@ Boost pressure is adjustable as a percentage. In my case I will use a table blen
 
 Ignition map can be swithed from the fuel type screen.
 
-CAN-BUS function is untested as of writing.
-
 ## Project hardware
 - Arduino nano
 - MCP2515 CAN-BUS SPI module - https://www.amazon.co.uk/ZkeeShop-MCP2515-Receiver-Compatible-Development/dp/B07SYH9BXS
@@ -48,12 +46,14 @@ Long press (2000 millis) of set button allows for values to be set on the pages 
 
 Once in the set mode the up and down buttons function to change the values up and down. Timeout of 10000 millis if no button is pressed.
 
+Boost percent and spark map are stored in EEPROM incase of power loss to keep last settings.
+
 ## CAN-BUS Programming
 ### 0x400
 | Output | Byte pos | Type | Function |
 |--------|----------|------|----------|
 | CAN Analog # 1 | 0 | unsigned 8 bit | Ignition table switch |
-| CAN Analog # 2 | 1 | unsigned 8 bit | Boost pressure output 0-255 |
+| CAN Analog # 2 | 1 | unsigned 8 bit | Boost table blend switch |
 
 ### 0x500
 | Data | Byte pos | Type | Multiplier |
