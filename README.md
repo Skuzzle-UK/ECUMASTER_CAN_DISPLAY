@@ -24,11 +24,15 @@ CAN-BUS function is untested as of writing.
 
 
 ## Function
+-D6 SLEEP_PIN
+
 Buttons assigned:
 - D5 : UP
 - D3 : DOWN
 - D4 : SET
-  
+
+If SLEEP_PIN goes high then display turns off and buttons don't function to enable power down when ecu turns off.
+
 Pressing up or down cycles through display pages as shown:
 1. CLOCK
 2. RPM
