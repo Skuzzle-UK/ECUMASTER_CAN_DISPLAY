@@ -14,9 +14,14 @@ CAN-BUS function is untested as of writing.
 
 ## Project hardware
 - Arduino nano
-- MCP2515 CAN-BUS SPI module.
-- 128x32 OLED display
+- MCP2515 CAN-BUS SPI module - https://www.amazon.co.uk/ZkeeShop-MCP2515-Receiver-Compatible-Development/dp/B07SYH9BXS
+- SSD1306 - 128x32 OLED display - https://www.amazon.co.uk/AITRIP-Display-SSD1306-3-3V-5V-Arduino/dp/B08H1LB6JZ/
 - 3 x buttons / switches
+
+## Requires libraries
+- autowp / arduino-mcp2515 - https://github.com/autowp/arduino-mcp2515/archive/master.zip
+- lexus2k / lcdgfx - https://github.com/lexus2k/lcdgfx
+
 
 ## Function
 Buttons assigned:
