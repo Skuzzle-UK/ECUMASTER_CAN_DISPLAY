@@ -37,6 +37,8 @@ public:
     float FUEL_USAGE();
     int32_t SPEED();
     bool LOCKED();
+    byte IGNITION_SWITCH_CAN_OUT();
+    byte BOOST_PRESSURE_CAN_OUT();
 
     //Setter Functions
     void SET_BOOST_PERCENTAGE(byte);

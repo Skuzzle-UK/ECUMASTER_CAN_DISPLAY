@@ -23,6 +23,21 @@
 
 //////////////////////////////////////////////////////////////
 
+    byte ECM::IGNITION_SWITCH_CAN_OUT(){
+      if(_sparkmap){return 0xFF;}
+      else{return 0x00;}
+    }
+
+//////////////////////////////////////////////////////////////
+
+    byte ECM::BOOST_PRESSURE_CAN_OUT(){
+      byte inc = 255 / 100;
+      byte val = _boostpercent * inc;
+      return val;
+    }
+
+//////////////////////////////////////////////////////////////
+
     //Setter Functions
 
     void ECM::MAP(byte byt){_map = byt;}
