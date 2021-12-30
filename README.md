@@ -11,6 +11,7 @@ Boost pressure is adjustable as a percentage. In my case I will use a table blen
 Ignition map can be swithed from the fuel type screen.
 
 ## Project hardware
+- ECUMaster EMU Black
 - Arduino nano
 - MCP2515 CAN-BUS SPI module - https://www.amazon.co.uk/ZkeeShop-MCP2515-Receiver-Compatible-Development/dp/B07SYH9BXS
 - SSD1306 - 128x32 OLED display - https://www.amazon.co.uk/AITRIP-Display-SSD1306-3-3V-5V-Arduino/dp/B08H1LB6JZ/
