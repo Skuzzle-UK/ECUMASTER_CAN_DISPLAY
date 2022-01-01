@@ -78,10 +78,18 @@ void UpdateOLED() {
 //////////////////////////////////////////////////////////////
 
 void CLOCKScreen(){
-  PrintHours();
-  PrintMinutes();
-  PrintSeconds();
-  ClockLoop();
+  if (is_rtc_enabled){
+    RTC_Clock();
+    PrintHours();
+    PrintMinutes();
+    PrintSeconds();
+  }
+  else{
+    PrintHours();
+    PrintMinutes();
+    PrintSeconds();
+    ClockLoop();
+  }
 }
 
 //////////////////////////////////////////////////////////////

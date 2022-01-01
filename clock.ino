@@ -46,6 +46,8 @@ void PrintHours()
 
 void ClockSetup()
 {
+    rtc.adjust(DateTime(F(__DATE__), F(__TIME__)));
+    is_rtc_enabled = RTC_ENABLED;
     lastMillis = lcd_millis();
     PrintHours();
     PrintMinutes();
@@ -64,6 +66,8 @@ void CLOCK_SET_TIME(DIRECTION direction) {
         }
       }
       seconds = 0;
+      DateTime now = rtc.now();
+      rtc.adjust(DateTime(now.year(), now.month(), now.day(), hours, minutes, seconds));
       break;
     }
     case DIRECTION::DOWN: {
@@ -75,6 +79,8 @@ void CLOCK_SET_TIME(DIRECTION direction) {
         }
       }
       seconds = 0;
+      DateTime now = rtc.now();
+      rtc.adjust(DateTime(now.year(), now.month(), now.day(), hours, minutes, seconds));
       break;
     }
   }
@@ -106,3 +112,10 @@ void ClockLoop()
 }
 
 //////////////////////////////////////////////////////////////
+
+void RTC_Clock(){
+  DateTime now = rtc.now();
+  hours = now.hour();
+  minutes = now.minute();
+  seconds = now.second();
+}

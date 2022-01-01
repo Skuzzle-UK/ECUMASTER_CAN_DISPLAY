@@ -78,6 +78,12 @@ void ActivateSetMode(){
     setModeEntered = millis();
     setMode = true;
     ecm.LOCK();
+    if (screen == SCREENS::CLOCK){
+      is_rtc_enabled = false;
+      PrintHours();
+      PrintMinutes();
+      PrintSeconds();
+  }
 }
 
 //////////////////////////////////////////////////////////////
@@ -88,6 +94,9 @@ void DeactivateSetMode(){
     ecm.UNLOCK();
     set_button_state = LOW;
     time_set_button_SETd = millis();
+    if (screen == SCREENS::CLOCK){
+        is_rtc_enabled = RTC_ENABLED;
+    }
 }
 
 //////////////////////////////////////////////////////////////
