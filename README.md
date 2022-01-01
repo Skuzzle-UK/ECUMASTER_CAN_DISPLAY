@@ -16,6 +16,7 @@ Ignition map can be swithed from the fuel type screen.
 - MCP2515 CAN-BUS SPI module - https://www.amazon.co.uk/ZkeeShop-MCP2515-Receiver-Compatible-Development/dp/B07SYH9BXS
 - SSD1306 - 128x32 OLED display - https://www.amazon.co.uk/AITRIP-Display-SSD1306-3-3V-5V-Arduino/dp/B08H1LB6JZ/
 - 3 x buttons / switches
+- DS1307 RTC Module (if you want super accurate time keeping for the clock
 
 ## Requires libraries
 - autowp / arduino-mcp2515 - https://github.com/autowp/arduino-mcp2515/archive/master.zip
