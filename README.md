@@ -1,5 +1,5 @@
 # ECUMASTER_CAN_DISPLAY
- 
+
 Arduino project for displaying a clock and useful engine data set via CAN-BUS.
 
 Build with ECUMASTER EMU Black in mind, but could be repurposed for any CAN-BUS system.
@@ -9,6 +9,9 @@ All data pages are currently displaying as intended. Clock works and time can be
 Boost pressure is adjustable as a percentage. In my case I will use a table blend method where 0% is table 1 and 100% is table 2. 50% would be an equal blend of the 2 tables.
 
 Ignition map can be swithed from the fuel type screen.
+
+## Suggest next improvements
+- CAN-BUS fault codes. Change display to various warning screens when fault packets are recieved.
 
 ## Project hardware
 - ECUMaster EMU Black
