@@ -9,7 +9,7 @@
 
 #define SLEEP_PIN A1 //Allows for the screen to turn off if pin does not recieve value
 #define SLEEP_PIN_MIN_VAL 511 //Should be somewhere around 2.5v
-#define RTC_ENABLED true //Does the project use RTC module
+#define RTC_ENABLED true//Does the project use RTC module
 
 //////////////////////////////////////////////////////////////
 
@@ -24,6 +24,7 @@ ECM ecm = ECM();
 //////////////////////////////////////////////////////////////
 
 void setup() {
+  Serial.begin(9600);
   ClockSetup();
   SetupCANBUS();
   SetupButtons();

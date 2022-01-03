@@ -46,7 +46,8 @@ void PrintHours()
 
 void ClockSetup()
 {
-    rtc.adjust(DateTime(F(__DATE__), F(__TIME__)));
+    //rtc.begin();
+    //rtc.adjust(DateTime(F(__DATE__), F(__TIME__))); //Remove comment to set time on compile of code
     is_rtc_enabled = RTC_ENABLED;
     lastMillis = lcd_millis();
     PrintHours();
@@ -56,34 +57,24 @@ void ClockSetup()
 //////////////////////////////////////////////////////////////
 
 void CLOCK_SET_TIME(DIRECTION direction) {
-  switch(direction){
-    case DIRECTION::UP: {
-      if (++minutes > 59){
-        minutes = 0;
-        if (++hours > 23)
-        {
+  DateTime now = rtc.now();
+    switch(direction){
+      case DIRECTION::UP: {
+        if (++hours > 23){
           hours = 0;
         }
+        seconds = 0;
+        break;
       }
-      seconds = 0;
-      DateTime now = rtc.now();
-      rtc.adjust(DateTime(now.year(), now.month(), now.day(), hours, minutes, seconds));
-      break;
-    }
-    case DIRECTION::DOWN: {
-      if (--minutes < 0){
-        minutes = 59;
-        if (--hours < 0)
-        {
-          hours = 23;
+      case DIRECTION::DOWN: {
+        if (++minutes > 59){
+          minutes = 0;
         }
+        seconds = 0;
+        break;
       }
-      seconds = 0;
-      DateTime now = rtc.now();
-      rtc.adjust(DateTime(now.year(), now.month(), now.day(), hours, minutes, seconds));
-      break;
     }
-  }
+  rtc.adjust(DateTime(now.year(), now.month(), now.day(), hours, minutes, seconds));
 }
 
 //////////////////////////////////////////////////////////////
@@ -118,4 +109,9 @@ void RTC_Clock(){
   hours = now.hour();
   minutes = now.minute();
   seconds = now.second();
+  Serial.print(now.hour());
+  Serial.print(":");
+  Serial.print(now.minute());
+  Serial.print(".");
+  Serial.println(now.second());    
 }

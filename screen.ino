@@ -44,10 +44,10 @@ void UpdateOLED() {
         MAPScreen();
         break;
       }
-      case SCREENS::BARO: {
+      /*case SCREENS::BARO: {
         BAROScreen();
         break;
-      }
+      }*/
       case SCREENS::CLT: {
         CLTScreen();
         break;
@@ -56,10 +56,10 @@ void UpdateOLED() {
         AITScreen();
         break;
       }
-      case SCREENS::OILP: {
+      /*case SCREENS::OILP: {
         OILPScreen();
         break;
-      }
+      }*/
       case SCREENS::AFR: {
         AFRScreen();
         break;

@@ -1,5 +1,5 @@
-#define UP_BUTTON 5
-#define DOWN_BUTTON 3
+#define UP_BUTTON 3
+#define DOWN_BUTTON 5
 #define SET_BUTTON 4
 #define LONG_PRESS 2000
 byte DEBOUNCE_TIME = 250;
