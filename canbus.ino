@@ -1,4 +1,5 @@
-// @TODO Check engine packets and display to show failure
+// @TODO work out how to use the MCP2515 hardware filtering so as to improve response time when CAN stream contains a lot of data.
+// @TODO Check engine packets and display to show failure of sensors etc.
 
 #define CAN_PAGE_1 0X500
 #define CAN_PAGE_2 0X501
