@@ -57,6 +57,12 @@ Once in the set mode the up and down buttons function to change the values up an
 
 Boost percent and spark map are stored in EEPROM incase of power loss to keep last settings.
 
+## ECU Setup
+- CAN-Bus speed - 1Mbs (can be altered in the canbus.ino file on line 12 if you need to use a different speed).
+- If possible send EMU stream over CAN-Bus deselected. It slows the display considerably at the moment. Maybe some work is required here to figure out how to deal with Can packets in a better way.
+- Can-Bus dashboard must be set to user defined.
+- From the tools menu you need to program the User defined can stream as per below or modify the code in canbus.ino to suit your own CAN-Bus stream.
+
 ## CAN-BUS Programming
 ### 0x400
 | Output | Byte pos | Type | Function |
