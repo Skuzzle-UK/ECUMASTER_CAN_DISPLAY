@@ -1,9 +1,9 @@
 #include <arduino.h>
 #include "ECM.h"
-#include <lcdgfx.h>
+#include <lcdgfx.h> // https://github.com/lexus2k/lcdgfx
 #include <SPI.h>
-#include <mcp2515.h>
-#include <RTClib.h>
+#include <mcp2515.h>  // https://github.com/autowp/arduino-mcp2515/tree/master
+#include <RTClib.h> // https://github.com/adafruit/RTClib
 
 //////////////////////////////////////////////////////////////
 

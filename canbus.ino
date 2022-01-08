@@ -1,4 +1,3 @@
-// @TODO work out how to use the MCP2515 hardware filtering so as to improve response time when CAN stream contains a lot of data.
 // @TODO Check engine packets and display to show failure of sensors etc.
 
 #define CAN_PAGE_1 0X500
@@ -9,15 +8,42 @@
 
 void SetupCANBUS(){
   SPI.begin();
-  mcp2515.reset();
+  SetupMaskFilter();
+  mcp2515.reset(); // @TODO look at this line. Is it needed or in the correct place.
   mcp2515.setBitrate(CAN_1000KBPS, MCP_8MHZ);
   mcp2515.setNormalMode();
 }
 
 //////////////////////////////////////////////////////////////
 
+// @TODO test this filtering. 
+
+// HARDWARE FILTERING of CAN ID
+// Mask address of 0x0500 means that every ID from range 0x500 - 0x5FF is accepted and placed in RXB0 (RX Buffer). Anything else is passed to mask 2.
+// If we wanted specific address rather than a range we could set mask to 0x05FF and the use filer of 0x502 for example. This would accept only
+// ID of 0x502.
+// If using masks, we must set both mask registers even if we dont care how the passed on packets are dealt with. In this case setting mask 2
+// to match mask 1 means that it wont collect any packets due to them all already being caught by mask 1.
+// All of our useful CAN packets are now in RXB0 for reading.
+
+void SetupMaskFilter(){
+  mcp2515.setFilterMask(0, 0, 0x0500); // bits of zero are ignored in mask so accepted range 0x500 - 0x5FF
+  mcp2515.setFilterMask(1, 0, 0x0500); // because both mask registers require setting
+  mcp2515.setFilter(0, 0, 0x500);
+}
+
+//////////////////////////////////////////////////////////////
+
 void ReadCANBUS() {
     struct can_frame readMsg;
+    /*
+    // May require a change to the code below on testing as we have sent our range using mask 0 to RXB0
+    // Test this but I believe that the method without the buffer overload will read from all buffers so should work fine.
+    //
+    if (mcp2515.readMessage(mcp2515.RXB0(), &readMsg) == MCP2515::ERROR_OK) {
+      // frame contains received from RXB0 message
+    }*/
+
     if (mcp2515.readMessage(&readMsg) == MCP2515::ERROR_OK){
       switch (readMsg.can_id){
         case CAN_PAGE_1:{

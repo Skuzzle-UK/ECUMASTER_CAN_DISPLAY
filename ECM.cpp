@@ -139,6 +139,7 @@ void ECM::ReadEEPROM(){
 
 //////////////////////////////////////////////////////////////
 
+// Using EEPROM.put to avoid excessive data writing sue to limited number of writes before corruption
 void ECM::WriteEEPROM(){
     EEPROM.put(MEM_LOCATION_BOOST, _boostpercent);
     EEPROM.put(MEM_LOCATION_SPARK_MAP, _sparkmap);
