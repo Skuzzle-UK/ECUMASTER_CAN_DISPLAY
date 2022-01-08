@@ -10,8 +10,9 @@ Boost pressure is adjustable as a percentage. In my case I will use a table blen
 
 Ignition map can be swithed from the fuel type screen.
 
-## Suggest next improvements
-- CAN-BUS fault codes. Change display to various warning screens when fault packets are recieved.
+## Community input
+Please feel free to look through the issues list, fork the repository and work through any of the issues that you like. You will find that most of the issues are enhancements. Add your own ideas in as issues so that others can work on them.
+I intend to spend a fair amount of time myself working through the issues list that I have created but this project can only get better for everyone with input from the users.
 
 ## Project hardware
 - ECUMaster EMU Black
