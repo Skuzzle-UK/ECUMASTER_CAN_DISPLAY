@@ -11,7 +11,7 @@ Boost pressure is adjustable as a percentage. In my case I will use a table blen
 Ignition map can be swithed from the fuel type screen.
 
 ## Community input
-Releases folder contains snapshots of the project at useful stages where the code is complete and working well. Each time a new feature is added and made stable I will add another zip to this folder.
+Releases contains snapshots of the project at useful stages where the code is complete and working well. Each time a new feature is added and made stable I will create a new release.
 
 If you intend to take this project as it is for use in your own car I would recommend taking it from the latest zip. If you intend to contribute to the project then please fork the repo.
 
